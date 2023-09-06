@@ -17,6 +17,9 @@ KIND, either express or implied.  See the License for the
 specific language governing permissions and limitations
 under the License.
 -->
+<!--
+THIS IS A PATCHED VERSION WHERE POM DEPENDENCY CACHING IS ENABLED AS WELL. THIS FIXES THE ISSUE: https://issues.apache.org/jira/browse/MBUILDCACHE-49
+-->
 <project xmlns="http://maven.apache.org/POM/4.0.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 https://maven.apache.org/xsd/maven-4.0.0.xsd">
   <modelVersion>4.0.0</modelVersion>
 
@@ -29,7 +32,7 @@ under the License.
 
   <groupId>org.apache.maven.extensions</groupId>
   <artifactId>maven-build-cache-extension</artifactId>
-  <version>1.0.1</version>
+  <version>1.0.1-cm</version>
   <packaging>jar</packaging>
 
   <name>Apache Maven Build Cache Extension</name>
@@ -52,6 +55,11 @@ under the License.
     <url>https://ci-maven.apache.org/job/Maven/job/maven-box/job/maven-build-cache-extension/</url>
   </ciManagement>
   <distributionManagement>
+    <repository>
+      <id>coremedia.internal.releases</id>
+      <name>MyCo Internal Repository</name>
+      <url>https://repository.coremedia.com/repository/thirdparty</url>
+    </repository>
     <site>
       <id>apache.website</id>
       <url>scm:svn:https://svn.apache.org/repos/asf/maven/website/components/${maven.site.path}</url>

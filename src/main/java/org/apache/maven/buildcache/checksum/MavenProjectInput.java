@@ -647,14 +647,6 @@ public class MavenProjectInput {
 
         for (Dependency dependency : project.getDependencies()) {
 
-            if (CacheUtils.isPom(dependency)) {
-                // POM dependency will be resolved by maven system to actual dependencies
-                // and will contribute to effective pom.
-                // Effective result will be recorded by #getNormalizedPom
-                // so pom dependencies must be skipped as meaningless by themselves
-                continue;
-            }
-
             // saved to index by the end of dependency build
             MavenProject dependencyProject = multiModuleSupport
                     .tryToResolveProject(dependency.getGroupId(), dependency.getArtifactId(), dependency.getVersion())
