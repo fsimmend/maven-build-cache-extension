@@ -50,7 +50,6 @@ import org.apache.commons.lang3.StringUtils;
 import org.apache.maven.artifact.Artifact;
 import org.apache.maven.artifact.resolver.ArtifactResolutionRequest;
 import org.apache.maven.artifact.resolver.ArtifactResolutionResult;
-import org.apache.maven.buildcache.CacheUtils;
 import org.apache.maven.buildcache.MultiModuleSupport;
 import org.apache.maven.buildcache.NormalizedModelProvider;
 import org.apache.maven.buildcache.PluginScanConfig;
@@ -600,14 +599,6 @@ public class MavenProjectInput {
         SortedMap<String, String> result = new TreeMap<>();
 
         for (Dependency dependency : project.getDependencies()) {
-
-            if (CacheUtils.isPom(dependency)) {
-                // POM dependency will be resolved by maven system to actual dependencies
-                // and will contribute to effective pom.
-                // Effective result will be recorded by #getNormalizedPom
-                // so pom dependencies must be skipped as meaningless by themselves
-                continue;
-            }
 
             // saved to index by the end of dependency build
             MavenProject dependencyProject = multiModuleSupport
